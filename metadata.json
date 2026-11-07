@@ -1,0 +1,6 @@
+{
+  "name": "Smash Trump",
+  "description": "An action-packed arcade flyer game featuring Washington D.C. landmarks, stealth bombers, obstacle dodging, and character selection.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
