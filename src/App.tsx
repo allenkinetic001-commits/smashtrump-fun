@@ -6,7 +6,9 @@ export default function App() {
   const focusGame = useCallback(() => {
     try {
       iframeRef.current?.contentWindow?.focus();
-    } catch {}
+    } catch {
+      // ignore
+    }
   }, []);
 
   const triggerFlap = useCallback(() => {
@@ -15,11 +17,15 @@ export default function App() {
       if (win) {
         if (typeof win.flap === 'function') {
           win.flap();
+        } else if (typeof win.flapGame === 'function') {
+          win.flapGame();
         } else {
           win.dispatchEvent(new KeyboardEvent('keydown', { code: 'Space', bubbles: true }));
         }
       }
-    } catch {}
+    } catch {
+      // ignore
+    }
     focusGame();
   }, [focusGame]);
 
@@ -34,6 +40,15 @@ export default function App() {
       if (e.code === 'Space' || e.code === 'ArrowUp') {
         e.preventDefault();
         triggerFlap();
+      } else if (e.code === 'KeyC') {
+        try {
+          const win = iframeRef.current?.contentWindow as any;
+          if (win) {
+            win.dispatchEvent(new KeyboardEvent('keydown', { code: 'KeyC' }));
+          }
+        } catch {
+          // ignore
+        }
       }
     };
 
