@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 
 export default function App() {
   const iframeRef = useRef<HTMLIFrameElement>(null);
