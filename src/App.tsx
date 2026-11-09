@@ -74,6 +74,7 @@ export default function App() {
         title="Smash Trump"
         className="border-none block w-full h-full"
         style={{
+          backgroundColor: '#0a1f44',
           aspectRatio: '2/3',
           height: '100%',
           maxHeight: '100dvh',
