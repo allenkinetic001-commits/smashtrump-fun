@@ -21,11 +21,76 @@ canvas{max-width:100%;max-height:100%;aspect-ratio:2/3;height:100%;background:#7
 #pick .char-card:first-child img{transform:scale(1.22)}
 #pick .char-card .char-name{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-top:3px;color:#cce0ff;pointer-events:none;white-space:nowrap}
 #pick .char-card.on .char-name{color:#ffd35c}
+
+#wrap{position:relative;height:100%;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#game-box{position:relative;height:100%;max-height:100vh;aspect-ratio:2/3;display:flex;align-items:center;justify-content:center}
+#burger-btn{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:8px;background:rgba(10,31,68,.88);border:1.5px solid rgba(255,211,92,.5);box-shadow:0 4px 14px rgba(0,0,0,.45);cursor:pointer;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:4px;padding:6px;z-index:50;transition:all .2s ease;outline:none;pointer-events:auto}
+#burger-btn:hover{background:rgba(10,31,68,.98);border-color:#ffd35c;transform:scale(1.06)}
+#burger-btn span{display:block;width:20px;height:2px;background:#ffd35c;border-radius:1px}
+#burger-menu{position:absolute;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;padding:16px;border-radius:12px;overflow:hidden;pointer-events:auto}
+#burger-menu.hidden{display:none !important}
+.menu-backdrop{position:absolute;inset:0;background:rgba(4,12,28,.82);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px)}
+.menu-card{position:relative;z-index:2;width:100%;max-width:320px;background:#0a1f44;border:1.5px solid rgba(255,211,92,.6);border-radius:12px;padding:16px;box-shadow:0 12px 36px rgba(0,0,0,.7);display:flex;flex-direction:column;gap:12px;color:#fff;font-family:system-ui,-apple-system,sans-serif;animation:popIn .18s ease-out}
+@keyframes popIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+.menu-header{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:10px}
+.token-title{font-size:17px;font-weight:800;color:#ffd35c;letter-spacing:.5px}
+#close-menu-btn{width:28px;height:28px;border-radius:6px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:14px;font-weight:bold;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s ease}
+#close-menu-btn:hover{background:rgba(255,255,255,.2);border-color:#ffd35c}
+.menu-body{display:flex;flex-direction:column;gap:10px}
+.ca-header{display:flex;align-items:center;justify-content:space-between}
+.ca-tag{font-size:10px;font-weight:700;text-transform:uppercase;color:#9cb3d9;letter-spacing:.6px}
+.ca-container{background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:8px 10px;word-break:break-all;user-select:all;-webkit-user-select:all}
+.ca-container code{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:11px;line-height:1.4;color:#ffd35c}
+#copy-ca-btn{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:9px;border-radius:6px;background:#ffd35c;color:#07152d;font-size:12px;font-weight:700;border:none;cursor:pointer;transition:all .15s ease}
+#copy-ca-btn:hover{background:#ffe082;transform:translateY(-1px)}
+#copy-ca-btn:active{transform:translateY(0)}
+.menu-actions{display:flex;gap:8px;margin-top:2px}
+.link-btn{flex:1;text-align:center;padding:8px 4px;border-radius:6px;font-size:11px;font-weight:600;text-decoration:none;transition:all .15s ease;display:inline-block}
+.pump-btn{background:rgba(0,209,143,.18);color:#00d18f;border:1px solid rgba(0,209,143,.4)}
+.pump-btn:hover{background:rgba(0,209,143,.3);border-color:#00d18f}
+.dex-btn{background:rgba(59,130,246,.18);color:#60a5fa;border:1px solid rgba(59,130,246,.4)}
+.dex-btn:hover{background:rgba(59,130,246,.3);border-color:#60a5fa}
 </style>
 </head>
 <body>
-<div id="wrap"><canvas id="c" width="400" height="600"></canvas>
-<div id="pick"></div></div>
+<div id="wrap">
+  <div id="game-box">
+    <canvas id="c" width="400" height="600"></canvas>
+    <button id="burger-btn" aria-label="Menu" title="TrumpCoin250 Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div id="pick"></div>
+    <div id="burger-menu" class="hidden">
+      <div class="menu-backdrop"></div>
+      <div class="menu-card">
+        <div class="menu-header">
+          <div class="token-title">TrumpCoin250</div>
+          <button id="close-menu-btn" aria-label="Close">✕</button>
+        </div>
+        <div class="menu-body">
+          <div class="ca-header">
+            <span class="ca-tag">Contract Address (Solana)</span>
+          </div>
+          <div class="ca-container">
+            <code id="ca-text">7wAvQc44PD3xNMPkAH5Woj5LQyYy8cLKh9RmabEYpump</code>
+          </div>
+          <button id="copy-ca-btn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            <span id="copy-btn-text">Copy Address</span>
+          </button>
+          <div class="menu-actions">
+            <a href="https://pump.fun/coin/7wAvQc44PD3xNMPkAH5Woj5LQyYy8cLKh9RmabEYpump" target="_blank" rel="noopener noreferrer" class="link-btn pump-btn">
+              Pump.fun ↗
+            </a>
+            <a href="https://dexscreener.com/solana/7wAvQc44PD3xNMPkAH5Woj5LQyYy8cLKh9RmabEYpump" target="_blank" rel="noopener noreferrer" class="link-btn dex-btn">
+              DexScreener ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <script>
 const cv=document.getElementById('c'),ctx=cv.getContext('2d');
 const W=400,H=600,GROUND=540,GAP=225,PW=64,SPEED=2.7,GRAV=0.45,JUMP=-7.55;
@@ -316,6 +381,78 @@ window.getCurrentCharacter=()=>cur;
 window.toggleMute=()=>{muted=!muted;return muted;};
 window.isMuted=()=>muted;
 window.flapGame=flap;
+
+// Burger menu interaction
+(function(){
+  const burgerBtn=document.getElementById('burger-btn');
+  const burgerMenu=document.getElementById('burger-menu');
+  const closeMenuBtn=document.getElementById('close-menu-btn');
+  const copyCaBtn=document.getElementById('copy-ca-btn');
+  const copyBtnText=document.getElementById('copy-btn-text');
+  const caAddress='7wAvQc44PD3xNMPkAH5Woj5LQyYy8cLKh9RmabEYpump';
+
+  function toggleBurger(e){
+    if(e){e.stopPropagation();e.preventDefault();}
+    if(!burgerMenu)return;
+    const isHidden=burgerMenu.classList.contains('hidden');
+    if(isHidden){
+      burgerMenu.classList.remove('hidden');
+    }else{
+      burgerMenu.classList.add('hidden');
+      window.focus();
+    }
+  }
+
+  if(burgerBtn){
+    burgerBtn.addEventListener('click',toggleBurger);
+    burgerBtn.addEventListener('pointerdown',e=>e.stopPropagation());
+  }
+  if(closeMenuBtn){
+    closeMenuBtn.addEventListener('click',toggleBurger);
+    closeMenuBtn.addEventListener('pointerdown',e=>e.stopPropagation());
+  }
+  if(burgerMenu){
+    burgerMenu.addEventListener('pointerdown',e=>e.stopPropagation());
+    burgerMenu.addEventListener('click',e=>{
+      e.stopPropagation();
+      if(e.target===burgerMenu||e.target.classList.contains('menu-backdrop')){
+        burgerMenu.classList.add('hidden');
+        window.focus();
+      }
+    });
+  }
+  if(copyCaBtn){
+    const doFeedback=()=>{
+      if(copyBtnText)copyBtnText.textContent='Copied! ✓';
+      setTimeout(()=>{if(copyBtnText)copyBtnText.textContent='Copy Address';},2000);
+    };
+    copyCaBtn.addEventListener('click',e=>{
+      e.stopPropagation();
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(caAddress).then(doFeedback).catch(()=>{
+          fallbackCopy(caAddress);
+          doFeedback();
+        });
+      }else{
+        fallbackCopy(caAddress);
+        doFeedback();
+      }
+    });
+    copyCaBtn.addEventListener('pointerdown',e=>e.stopPropagation());
+  }
+
+  function fallbackCopy(text){
+    const ta=document.createElement('textarea');
+    ta.value=text;
+    ta.style.position='fixed';
+    ta.style.left='-9999px';
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    try{document.execCommand('copy');}catch(err){}
+    document.body.removeChild(ta);
+  }
+})();
 </script>
 </body>
 </html>
