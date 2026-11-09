@@ -65,20 +65,20 @@ export default function App() {
 
   return (
     <div
-      className="fixed inset-0 w-full h-full bg-[#0a1f44] flex items-center justify-center overflow-hidden m-0 p-0 select-none"
+      className="fixed inset-0 w-full h-[100dvh] bg-[#0a1f44] flex items-center justify-center overflow-hidden m-0 p-0 select-none touch-none"
       onClick={triggerFlap}
     >
       <iframe
         ref={iframeRef}
         src="/assets/aistudio/Smash_Trump_c87fb6a5.html"
         title="Smash Trump"
-        className="border-none block"
+        className="border-none block w-full h-full"
         style={{
           aspectRatio: '2/3',
           height: '100%',
-          maxHeight: '100vh',
-          width: 'auto',
-          maxWidth: 'min(100vw, calc(100vh * 2 / 3))',
+          maxHeight: '100dvh',
+          width: '100%',
+          maxWidth: 'min(100vw, calc(100dvh * 2 / 3))',
         }}
         tabIndex={0}
         allow="autoplay"
