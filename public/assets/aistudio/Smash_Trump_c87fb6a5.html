@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Smash Trump</title>
 <style>
 :root{--bg:#0a1f44;--ink:#fff;--accent:#d7263d;--gold:#f2c14e;color-scheme:dark}
 html,body{height:100%;height:100dvh;width:100%;margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;overflow:hidden;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
-#wrap{width:100%;height:100%;height:100dvh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:#0a1f44}
-#game-box{position:relative;height:100%;max-height:100dvh;width:100%;max-width:min(100vw,calc(100dvh * 2 / 3));aspect-ratio:2/3;display:flex;align-items:center;justify-content:center}
-canvas{width:100%;height:100%;max-height:100dvh;background:#3f9fe0;border-radius:0;box-shadow:0 8px 30px rgba(0,0,0,.45);display:block;touch-action:none}
+#wrap{width:100%;height:100%;height:100vh;height:100dvh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:#0a1f44}
+#game-box{position:relative;width:min(100vw,calc(100dvh * 2 / 3));height:min(100dvh,calc(100vw * 3 / 2));aspect-ratio:2/3;max-width:100vw;max-height:100dvh;display:flex;align-items:center;justify-content:center;box-sizing:border-box}
+canvas{width:100%;height:100%;aspect-ratio:2/3;object-fit:contain;background:#3f9fe0;border-radius:0;box-shadow:0 8px 30px rgba(0,0,0,.45);display:block;touch-action:none}
 @media (min-width:500px){canvas{border-radius:12px}#game-box{border-radius:12px}}
 
 #burger-btn{position:absolute;top:calc(12px + env(safe-area-inset-top,0px));right:calc(12px + env(safe-area-inset-right,0px));width:40px;height:40px;border-radius:8px;background:rgba(10,31,68,.88);border:1.5px solid rgba(255,211,92,.5);box-shadow:0 4px 14px rgba(0,0,0,.45);cursor:pointer;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:4px;padding:6px;z-index:50;transition:all .18s ease;outline:none;pointer-events:auto;-webkit-tap-highlight-color:transparent}

@@ -75,11 +75,8 @@ export default function App() {
         className="border-none block w-full h-full"
         style={{
           backgroundColor: '#0a1f44',
-          aspectRatio: '2/3',
-          height: '100%',
-          maxHeight: '100dvh',
           width: '100%',
-          maxWidth: 'min(100vw, calc(100dvh * 2 / 3))',
+          height: '100%',
         }}
         tabIndex={0}
         allow="autoplay"
