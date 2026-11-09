@@ -44,9 +44,10 @@ sprites.forEach((o,i)=>{
   const b=document.createElement('button');b.tabIndex=-1;b.className='char-card';b.title=(o.name||('Character '+(i+1)));
   const t=document.createElement('img');t.src=o.src;b.appendChild(t);
   const lbl=document.createElement('span');lbl.className='char-name';lbl.textContent=((o.name||('Hero '+(i+1))).split(' ')[0]);b.appendChild(lbl);
-  const onSelect=(e)=>{e.stopPropagation();e.preventDefault();pick(i);sndSwitch();b.blur()};
+  const onSelect=(e)=>{e.stopPropagation();e.preventDefault();pick(i);sndSwitch();b.blur();window.focus()};
   b.addEventListener('pointerdown',onSelect);
   b.addEventListener('click',onSelect);
+  b.addEventListener('keydown',e=>{if(e.code==='Space'||e.code==='ArrowUp'){e.preventDefault();b.blur();window.focus();flap()}});
   pickEl.appendChild(b);
 });
 function pick(i){
@@ -126,16 +127,6 @@ let over=0;
 addEventListener('keydown',e=>{if(e.code==='Space'||e.code==='ArrowUp'){e.preventDefault();flap()}});
 cv.addEventListener('pointerdown',e=>{
   e.preventDefault();
-  if(st==='ready'){
-    const r=cv.getBoundingClientRect();
-    const cx=(e.clientX-r.left)*(W/r.width);
-    const cy=(e.clientY-r.top)*(H/r.height);
-    if(Math.abs(cx-110)<SW/2+25&&Math.abs(cy-y)<SH/2+25){
-      pick((cur+1)%sprites.length);
-      sndSwitch();
-      return;
-    }
-  }
   flap();
 });
 function die(){if(st==='over')return;st='over';over=0;shake=10;sndCrash();
